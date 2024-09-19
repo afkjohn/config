@@ -101,4 +101,6 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+#alias francinette="$HOME"/francinette/tester.sh
+alias paco="$HOME"/francinette/tester.sh
+alias ohmyzsh="mate ~/.oh-my-zsh"
