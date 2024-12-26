@@ -1,5 +1,16 @@
 -- Set pumheight (autocomplete height)
-vim.o.pumheight = 15
+vim.o.pumheight = 10
+
+-- Set column soft limit
+vim.o.colorcolumn = "80"
+
+-- additional preferences
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.o.shiftwidth = 0
+
+-- no swap file
+vim.o.swapfile = false
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -8,7 +19,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -46,10 +57,10 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes:1"
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.opt.updatetime = 50
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
@@ -72,7 +83,7 @@ vim.opt.inccommand = "nosplit"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 8
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
