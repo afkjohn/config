@@ -1,13 +1,13 @@
 #If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export ZSH="$HOME/.oh-my-zsh"
+
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
 # from MacOS specific
 eval "$(/opt/homebrew/bin/brew shellenv)"
-export ZSH="$HOME/.oh-my-zsh"
-export NVIM_CONF="/Users/afkjohn/.config/nvim/init.lua"
+export NVIM_DIR="/Users/afkjohn/.config/nvim"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export ODOO_VENV="/Users/afkjohn/Documents/python/venv/bin/activate"
-export PATH="$PATH:/Users/afkjohn/.local/bin"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -61,7 +61,6 @@ HIST_STAMPS="dd/mm/yyyy"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions)
 
-source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
 
@@ -71,6 +70,30 @@ else
   export EDITOR='nvim'
 fi
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source $ODOO_VENV 
+source $ZSH/oh-my-zsh.sh
+
+# export LC_ALL=en_US.UTF-8
+# export LANG=en_US.UTF-8
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export HAM_ENV="/Users/afkjohn/Documents/pythonenv/hamenv/bin/activate"
+export ZCONF="$HOME/.zshrc"
+
+source $HAM_ENV
+export OPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@3
+export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$(brew --prefix qt@5)
+export PATH=$PATH:$(brew --prefix qt@5)/bin
