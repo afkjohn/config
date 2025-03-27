@@ -1,34 +1,13 @@
-#If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 
-# from MacOS specific
-# eval "$(/opt/homebrew/bin/brew shellenv)"
-# export NVIM_CONF="/Users/afkjohn/.config/nvim/init.lua"
-# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# export ODOO_VENV="/Users/afkjohn/Documents/python/venv/bin/activate"
-# source $ODOO_VENV 
+export NVIM_DIR="/Users/afkjohn/.config/nvim"
 
-export ODOO_VENV="$HOME/penv/bin/activate"
-source $ODOO_VENV 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="amuse"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
 zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -63,7 +42,6 @@ HIST_STAMPS="dd/mm/yyyy"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions)
 
-
 export LANG=en_US.UTF-8
 
 if [[ -n $SSH_CONNECTION ]]; then
@@ -71,7 +49,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
-
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -81,13 +58,14 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source $ZSH/oh-my-zsh.sh
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+export ZCONF="$HOME/.zshrc"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias ohmyzsh="mate ~/.oh-my-zsh"
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
