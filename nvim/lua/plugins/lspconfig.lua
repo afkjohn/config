@@ -1,19 +1,5 @@
 return {
 	{
-		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-		-- used for completion, annotations and signatures of Neovim apis
-		"folke/lazydev.nvim",
-		ft = "lua",
-		opts = {
-			library = {
-				-- Load luvit types when the `vim.uv` word is found
-				{ path = "luvit-meta/library", words = { "vim%.uv" } },
-			},
-		},
-	},
-
-	{ "Bilal2453/luvit-meta", lazy = true },
-	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -245,6 +231,24 @@ return {
 					end,
 				},
 			})
+
+			-- LSP CONFIG EACH LS
+
+			require("lspconfig").terraformls.setup({
+				root_dir = require("lspconfig.util").root_pattern(".terraform", "*.tf"),
+			})
+
+			require("lspconfig").tflint.setup({
+				root_dir = require("lspconfig.util").root_pattern(".terraform", "*.tf"),
+			})
+
+			vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+				pattern = { "*.tf", "*.tfvars" },
+				callback = function()
+					vim.lsp.buf.format()
+				end,
+			})
+
 			-- require("lspconfig").harper_ls.setup({
 			-- 	filetypes = {
 			-- 		"markdown",

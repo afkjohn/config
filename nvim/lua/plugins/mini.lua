@@ -1,11 +1,5 @@
 return {
 	-- highlight todo, notes, etc in comments
-	{
-		"folke/todo-comments.nvim",
-		event = "vimenter",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
-	},
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
 		config = function()
